@@ -1,3 +1,11 @@
+## 2.3.5
+
+- update CHANGELOG.md
+
+## 2.3.4
+
+- add gitignore
+
 ## 2.3.3
 
 - add gitignore
