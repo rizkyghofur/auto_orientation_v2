@@ -1,13 +1,14 @@
 # auto_orientation
-This plugin was created to programmatically rotate on iOS and Android
+
+This plugin was created to programmatically rotate on iOS and Android, this is upgraded version from [auto_orientation](https://pub.dev/packages/auto_orientation)
 
 ## Getting Started
 
 After importing the package you can use:
-`AutoOrientation.landscapeLeftMode();` or 
+`AutoOrientation.landscapeLeftMode();` or
 `AutoOrientation.landscapeRightMode();` or
 `AutoOrientation.portraitDownMode();` (might not work) or
-`AutoOrientation.portraitUpMode();` or 
+`AutoOrientation.portraitUpMode();` or
 `AutoOrientation.portraitAutoMode();` (Android only) or
 `AutoOrientation.portraitAutoMode(forceSensor: true);` (Use sensor data to change direction, ignoring user's rotation preference. Much like Youtube fullscreen. Android only) or
 `AutoOrientation.landscapeAutoMode();` (Android only) or
