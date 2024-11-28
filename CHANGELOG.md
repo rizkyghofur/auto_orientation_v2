@@ -1,3 +1,7 @@
+## 2.3.3
+
+- add gitignore
+
 ## 2.3.2
 
 - add setAuto ForceSensor in fullAutoMode
