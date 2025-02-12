@@ -1,4 +1,4 @@
-import 'package:auto_orientation/auto_orientation_v2.dart';
+import 'package:auto_orientation_v2/auto_orientation_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

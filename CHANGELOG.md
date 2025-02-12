@@ -1,3 +1,7 @@
+## 2.3.6
+
+- fixed for No podspec found for auto_orientation_v2 in .symlinks/plugins/auto_orientation_v2/ios in issue [#1](https://github.com/rizkyghofur/auto_orientation_v2/issues/1)
+
 ## 2.3.5
 
 - update CHANGELOG.md
