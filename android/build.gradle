@@ -25,10 +25,10 @@ android {
     if (project.android.hasProperty("namespace")) {
         namespace 'de.bytepark.autoorientation'
     }
-    compileSdkVersion 31
+    compileSdkVersion 36
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 24
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
