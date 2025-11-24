@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'auto_orientation_v2'
-  s.version          = '2.3.6'
+  s.version          = '2.3.7'
   s.summary          = 'A new flutter plugin project.'
   s.description      = <<-DESC
 A new flutter plugin project.

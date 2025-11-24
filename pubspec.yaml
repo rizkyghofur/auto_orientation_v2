@@ -1,6 +1,6 @@
 name: auto_orientation_v2
 description: Set the device orientation programmatically for iOS and Android
-version: 2.3.6
+version: 2.3.7
 homepage: https://github.com/rizkyghofur/auto_orientation_v2
 repository: https://github.com/rizkyghofur/auto_orientation_v2
 issue_tracker: https://github.com/rizkyghofur/auto_orientation_v2/issues
