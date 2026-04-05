@@ -1,0 +1,42 @@
+# Files to exclude from pub.dev package
+.dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+
+# iOS
+ios/.generated/
+ios/Flutter/ephemeral/
+ios/Pods/
+ios/Podfile.lock
+
+# Android
+android/.gradle/
+android/local.properties
+android/gen/
+android/bin/
+android/build/
+
+# macOS/IDE
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Example
+example/ios/.generated/
+example/ios/Flutter/ephemeral/
+example/ios/Pods/
+example/ios/Podfile.lock
+example/android/.gradle/
+example/android/local.properties
+example/android/gen/
+example/android/bin/
+example/android/build/
+example/build/
+example/.dart_tool/
+example/.pub/
+example/.flutter-plugins
+example/.flutter-plugins-dependencies

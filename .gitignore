@@ -1,3 +1,26 @@
-.gitignore
+# Flutter/Dart
 .dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+
+# iOS
+ios/.generated/
+ios/Flutter/ephemeral/
+ios/Pods/
+ios/Podfile.lock
+
+# Android
+android/.gradle/
+android/local.properties
+android/gen/
+android/bin/
+android/build/
+
+# macOS/IDE
 .DS_Store
+.idea/
+.vscode/
+*.iml
