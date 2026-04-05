@@ -55,6 +55,11 @@ public class AutoOrientationPlugin implements FlutterPlugin, ActivityAware, Meth
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
+    if (activity == null) {
+      result.error("NO_ACTIVITY", "AutoOrientationPlugin is not attached to an activity.", null);
+      return;
+    }
+
     switch(call.method) {
       case "setLandscapeRight":
         this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -115,7 +120,7 @@ public class AutoOrientationPlugin implements FlutterPlugin, ActivityAware, Meth
       }
       default:
         result.notImplemented();
-        break;
+        return;
     }
     result.success(null);
   }

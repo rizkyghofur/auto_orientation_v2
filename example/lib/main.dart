@@ -1,15 +1,17 @@
 import 'package:auto_orientation_v2/auto_orientation_v2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(
-    AutoOrientationDemo(),
+    const MaterialApp(
+      home: AutoOrientationDemo(),
+      debugShowCheckedModeBanner: false,
+    ),
   );
 }
 
 class AutoOrientationDemo extends StatefulWidget {
-  AutoOrientationDemo({this.title = 'Auto Orientation Demo'});
+  const AutoOrientationDemo({super.key, this.title = 'Auto Orientation Demo'});
 
   final String title;
 
@@ -20,145 +22,145 @@ class AutoOrientationDemo extends StatefulWidget {
 }
 
 class _AutoOrientationDemoState extends State<AutoOrientationDemo> {
-  TargetPlatform? _platform;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: widget.title,
-      theme: ThemeData.light().copyWith(
-        platform: _platform ?? Theme.of(context).platform,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        elevation: 2,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Column(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.landscapeLeftMode();
-                    },
-                    child: Padding(
-                      child: Text("Landscape left mode"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
+            const SectionHeader(title: "Recommended API (Enum Based)"),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                OrientationButton(
+                  label: "Landscape Right",
+                  onPressed: () => AutoOrientation.setOrientation(
+                      AutoOrientationMode.landscapeRight),
+                ),
+                OrientationButton(
+                  label: "Landscape Left",
+                  onPressed: () => AutoOrientation.setOrientation(
+                      AutoOrientationMode.landscapeLeft),
+                ),
+                OrientationButton(
+                  label: "Portrait Up",
+                  onPressed: () => AutoOrientation.setOrientation(
+                      AutoOrientationMode.portraitUp),
+                ),
+                OrientationButton(
+                  label: "Portrait Down",
+                  onPressed: () => AutoOrientation.setOrientation(
+                      AutoOrientationMode.portraitDown),
+                ),
+                OrientationButton(
+                  label: "Full Auto",
+                  onPressed: () => AutoOrientation.setOrientation(
+                      AutoOrientationMode.fullAuto),
+                ),
+                OrientationButton(
+                  label: "User Default",
+                  color: Colors.orange,
+                  onPressed: () =>
+                      AutoOrientation.setOrientation(AutoOrientationMode.user),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            const SectionHeader(title: "Android Specific (Force Sensor)"),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                OrientationButton(
+                  label: "Landscape Auto (Forced)",
+                  color: Colors.green,
+                  onPressed: () => AutoOrientation.setOrientation(
+                    AutoOrientationMode.landscapeAuto,
+                    forceSensor: true,
                   ),
                 ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      SystemChrome.setPreferredOrientations([
-                        DeviceOrientation.portraitUp,
-                        DeviceOrientation.portraitDown,
-                        DeviceOrientation.landscapeLeft,
-                        DeviceOrientation.landscapeRight,
-                      ]);
-                      AutoOrientation.landscapeRightMode();
-                    },
-                    child: Padding(
-                      child: Text("Landscape right mode"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
+                OrientationButton(
+                  label: "Portrait Auto (Forced)",
+                  color: Colors.green,
+                  onPressed: () => AutoOrientation.setOrientation(
+                    AutoOrientationMode.portraitAuto,
+                    forceSensor: true,
                   ),
                 ),
               ],
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.portraitUpMode();
-                    },
-                    child: Padding(
-                      child: Text("Portrait up mode"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
+            const SizedBox(height: 24),
+            const SectionHeader(title: "Legacy API (Deep Link)"),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                OrientationButton(
+                  label: "Legacy Landscape Right",
+                  color: Colors.grey,
+                  onPressed: () => AutoOrientation.landscapeRightMode(),
                 ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.portraitDownMode();
-                    },
-                    child: Padding(
-                      child: Text("Portrait down mode"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.fullAutoMode();
-                    },
-                    child: Padding(
-                      child: Text("All modes (Android only)"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.setScreenOrientationUser();
-                    },
-                    child: Padding(
-                      child:
-                          Text("Screen Orientation User mode (Android only)"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.landscapeAutoMode();
-                    },
-                    child: Padding(
-                      child: Text("Landscape auto (Android only)"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      AutoOrientation.portraitAutoMode();
-                    },
-                    child: Padding(
-                      child: Text("Portrait auto (Android only)"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
+                OrientationButton(
+                  label: "Legacy Portrait Up",
+                  color: Colors.grey,
+                  onPressed: () => AutoOrientation.portraitUpMode(),
                 ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class SectionHeader extends StatelessWidget {
+  final String title;
+  const SectionHeader({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.blueGrey,
+            ),
+      ),
+    );
+  }
+}
+
+class OrientationButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onPressed;
+  final Color? color;
+
+  const OrientationButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      ),
+      child: Text(label),
     );
   }
 }

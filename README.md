@@ -74,6 +74,31 @@ AutoOrientation.fullAutoMode();
 
 ---
 
+## 🛠️ New: Enum-based API (Recommended)
+
+Since version `2.3.8`, you can use the `setOrientation` method with the `AutoOrientationMode` enum for a cleaner syntax.
+
+```dart
+import 'package:auto_orientation/auto_orientation.dart';
+
+// Switch to landscape
+AutoOrientation.setOrientation(AutoOrientationMode.landscapeRight);
+
+// Switch to portrait
+AutoOrientation.setOrientation(AutoOrientationMode.portraitUp);
+
+// Use auto mode with force sensor (Android)
+AutoOrientation.setOrientation(
+  AutoOrientationMode.landscapeAuto, 
+  forceSensor: true,
+);
+
+// Reset to user/system default
+AutoOrientation.setOrientation(AutoOrientationMode.user);
+```
+
+---
+
 ## ❗ Important Notes
 
 - **Do NOT call `SystemChrome.setPreferredOrientations` manually.**

@@ -2,7 +2,7 @@ name: auto_orientation_example
 description: An example of how to use the auto orientation plugin for Flutter
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=2.17.0 <4.0.0"
 
 dependencies:
   auto_orientation_v2:

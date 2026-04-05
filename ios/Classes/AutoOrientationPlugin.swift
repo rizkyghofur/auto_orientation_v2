@@ -17,29 +17,44 @@ public class AutoOrientationPlugin: NSObject, FlutterPlugin {
 
         UIViewController.attemptRotationToDeviceOrientation()
 
-        result(FlutterMethodNotImplemented)
+        // Fix: Always return success unless it's genuinely not implemented
+        if (call.method == "setLandscapeRight" || 
+            call.method == "setLandscapeLeft" || 
+            call.method == "setPortraitUp" || 
+            call.method == "setPortraitDown" || 
+            call.method == "setPortraitAuto" || 
+            call.method == "setLandscapeAuto" || 
+            call.method == "setAuto" || 
+            call.method == "setScreenOrientationUser") {
+            result(nil)
+        } else {
+            result(FlutterMethodNotImplemented)
+        }
     }
     
     @available(iOS 16.0, *)
     func setOrientation(_ call: FlutterMethodCall) {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             else { return }
+        
         let resolvedMask: UIInterfaceOrientationMask
         switch call.method {
         case "setLandscapeRight", "setLandscapeAuto":
-            resolvedMask = UIInterfaceOrientationMask.landscapeRight
+            resolvedMask = .landscapeRight
         case "setLandscapeLeft":
-            resolvedMask = UIInterfaceOrientationMask.landscapeLeft
+            resolvedMask = .landscapeLeft
         case "setPortraitUp", "setPortraitAuto":
-            resolvedMask = UIInterfaceOrientationMask.portrait
+            resolvedMask = .portrait
         case "setPortraitDown":
-            resolvedMask = UIInterfaceOrientationMask.portraitUpsideDown
+            resolvedMask = .portraitUpsideDown
+        case "setAuto", "setScreenOrientationUser":
+            resolvedMask = .all
         default:
-            resolvedMask = UIInterfaceOrientationMask.all
-            break
+            resolvedMask = .all
         }
+        
         windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: resolvedMask)) { error in
-            // TODO: Perhaps call back to Flutter with an error
+            // Optional: Log error if needed
         }
     }
     
@@ -47,17 +62,24 @@ public class AutoOrientationPlugin: NSObject, FlutterPlugin {
         let resolvedOrientation: UIInterfaceOrientation
         switch call.method {
         case "setLandscapeRight", "setLandscapeAuto":
-            resolvedOrientation = UIInterfaceOrientation.landscapeRight
+            resolvedOrientation = .landscapeRight
         case "setLandscapeLeft":
-            resolvedOrientation = UIInterfaceOrientation.landscapeLeft
+            resolvedOrientation = .landscapeLeft
         case "setPortraitUp", "setPortraitAuto":
-            resolvedOrientation = UIInterfaceOrientation.portrait
+            resolvedOrientation = .portrait
         case "setPortraitDown":
-            resolvedOrientation = UIInterfaceOrientation.portraitUpsideDown
+            resolvedOrientation = .portraitUpsideDown
+        case "setAuto", "setScreenOrientationUser":
+            resolvedOrientation = .unknown
         default:
-            resolvedOrientation = UIInterfaceOrientation.unknown
-            break
+            resolvedOrientation = .unknown
         }
-        UIDevice.current.setValue(resolvedOrientation.rawValue, forKey: "orientation")
+        
+        if resolvedOrientation != .unknown {
+            UIDevice.current.setValue(resolvedOrientation.rawValue, forKey: "orientation")
+        } else {
+            // For 'auto' or 'user' on legacy, we might just trigger a rotation attempt
+            UIViewController.attemptRotationToDeviceOrientation()
+        }
     }
 }

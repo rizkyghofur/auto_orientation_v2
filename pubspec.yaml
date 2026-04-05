@@ -1,16 +1,20 @@
 name: auto_orientation_v2
-description: Set the device orientation programmatically for iOS and Android
-version: 2.3.7
+description: Set and control device orientation programmatically for Flutter apps on iOS and Android.
+version: 2.3.8
 homepage: https://github.com/rizkyghofur/auto_orientation_v2
 repository: https://github.com/rizkyghofur/auto_orientation_v2
 issue_tracker: https://github.com/rizkyghofur/auto_orientation_v2/issues
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
-  flutter: ">=1.12.0"
+  sdk: ">=2.17.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
     sdk: flutter
 
 flutter:

@@ -1,3 +1,13 @@
+## 2.3.8
+
+- Added `AutoOrientationMode` enum for easier orientation management.
+- Added `setOrientation()` method to support enum-based API.
+- Fixed iOS bug where plugin methods always returned `notImplemented`.
+- Improved Android stability with null safety checks for Activity.
+- Improved iOS 16+ orientation handling using `windowScene.requestGeometryUpdate`.
+- Modernized example app with new API demonstration.
+- Updated minimum Dart SDK to 2.17.0 and Flutter to 3.0.0.
+
 ## 2.3.7
 
 - upgraded build.gradle in pull request [#2](https://github.com/rizkyghofur/auto_orientation_v2/pull/2)
