@@ -3,10 +3,10 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'auto_orientation_v2'
-  s.version          = '2.3.7'
-  s.summary          = 'A new flutter plugin project.'
+  s.version          = '2.4.0'
+  s.summary          = 'Set and control device orientation programmatically for Flutter apps on iOS and Android.'
   s.description      = <<-DESC
-A new flutter plugin project.
+Set and control device orientation programmatically for Flutter apps on iOS and Android.
                        DESC
   s.homepage         = 'http://rizkyghofur.my.id'
   s.license          = { :file => '../LICENSE' }
