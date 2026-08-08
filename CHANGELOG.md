@@ -1,3 +1,8 @@
+## 2.4.3
+
+- Added dedicated Web implementation using browser `ScreenOrientation` API (`web/auto_orientation_v2_web.dart`).
+- Added native `windows/CMakeLists.txt` and `linux/CMakeLists.txt` build manifests for native desktop plugin recognition.
+
 ## 2.4.2
 
 - Added Swift Package Manager (SPM) manifest for macOS at `macos/auto_orientation_v2/Package.swift`.
