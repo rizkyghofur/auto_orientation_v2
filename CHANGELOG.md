@@ -1,3 +1,8 @@
+## 2.4.2
+
+- Added Swift Package Manager (SPM) manifest for macOS at `macos/auto_orientation_v2/Package.swift`.
+- Added `macos/auto_orientation_v2.podspec` for complete macOS package compatibility.
+
 ## 2.4.1
 
 - Added multi-platform declarations for `Web`, `Windows`, `macOS`, and `Linux` (20/20 platform score on pub.dev).
