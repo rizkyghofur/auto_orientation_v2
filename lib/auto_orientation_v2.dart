@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 /// Available modes for device orientation.
 enum AutoOrientationMode {
@@ -157,7 +158,75 @@ class AutoOrientation {
     try {
       await _channel.invokeMethod('setScreenOrientationUser');
     } on MissingPluginException catch (_) {
-      return;
-    }
+      await SystemChrome.setPreferredOrientations([]);
+    } catch (_) {}
+  }
+
+  /// Returns true if the device is currently in landscape orientation.
+  static bool isLandscape(BuildContext context) {
+    return MediaQuery.of(context).orientation == Orientation.landscape;
+  }
+
+  /// Returns true if the device is currently in portrait orientation.
+  static bool isPortrait(BuildContext context) {
+    return MediaQuery.of(context).orientation == Orientation.portrait;
+  }
+
+  /// Returns the current device [Orientation] from [BuildContext].
+  static Orientation currentOrientation(BuildContext context) {
+    return MediaQuery.of(context).orientation;
+  }
+}
+
+/// A widget that automatically locks the device orientation to [targetMode]
+/// when mounted, and reverts to [onDisposeMode] when unmounted.
+class AutoOrientationScope extends StatefulWidget {
+  /// The orientation mode to apply when this widget is inserted into the tree.
+  final AutoOrientationMode targetMode;
+
+  /// The orientation mode to restore when this widget is removed from the tree.
+  /// Defaults to [AutoOrientationMode.portraitUp].
+  final AutoOrientationMode onDisposeMode;
+
+  /// Whether to force sensor auto-rotation (Android only).
+  final bool forceSensor;
+
+  /// The widget child.
+  final Widget child;
+
+  const AutoOrientationScope({
+    Key? key,
+    required this.targetMode,
+    this.onDisposeMode = AutoOrientationMode.portraitUp,
+    this.forceSensor = false,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  State<AutoOrientationScope> createState() => _AutoOrientationScopeState();
+}
+
+class _AutoOrientationScopeState extends State<AutoOrientationScope> {
+  @override
+  void initState() {
+    super.initState();
+    AutoOrientation.setOrientation(
+      widget.targetMode,
+      forceSensor: widget.forceSensor,
+    );
+  }
+
+  @override
+  void dispose() {
+    AutoOrientation.setOrientation(
+      widget.onDisposeMode,
+      forceSensor: widget.forceSensor,
+    );
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
   }
 }

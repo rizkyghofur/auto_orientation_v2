@@ -1,4 +1,5 @@
 import 'package:auto_orientation_v2/auto_orientation_v2.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -36,7 +37,8 @@ void main() {
     ]);
   });
 
-  test('setOrientation landscapeAuto with forceSensor calls native method', () async {
+  test('setOrientation landscapeAuto with forceSensor calls native method',
+      () async {
     await AutoOrientation.setOrientation(
       AutoOrientationMode.landscapeAuto,
       forceSensor: true,
@@ -57,6 +59,36 @@ void main() {
     await AutoOrientation.landscapeRightMode();
     expect(log, <Matcher>[
       isMethodCall('setLandscapeRight', arguments: null),
+    ]);
+  });
+
+  testWidgets(
+      'AutoOrientationScope applies targetMode on init and onDisposeMode on dispose',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: AutoOrientationScope(
+          targetMode: AutoOrientationMode.landscapeRight,
+          onDisposeMode: AutoOrientationMode.portraitUp,
+          child: Text('Scoped Screen'),
+        ),
+      ),
+    );
+
+    expect(log, <Matcher>[
+      isMethodCall('setLandscapeRight', arguments: null),
+    ]);
+
+    log.clear();
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Text('Other Screen'),
+      ),
+    );
+
+    expect(log, <Matcher>[
+      isMethodCall('setPortraitUp', arguments: null),
     ]);
   });
 }

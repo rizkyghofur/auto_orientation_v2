@@ -97,7 +97,20 @@ class _AutoOrientationDemoState extends State<AutoOrientationDemo> {
               ],
             ),
             const SizedBox(height: 24),
-            const SectionHeader(title: "Legacy API (Deep Link)"),
+            const SectionHeader(title: "Declarative API (AutoOrientationScope)"),
+            OrientationButton(
+              label: "Open Landscape Screen (Auto Lock & Revert)",
+              color: Colors.deepPurple,
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ScopedLandscapeScreen(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            const SectionHeader(title: "Legacy API (Direct Methods)"),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -114,7 +127,61 @@ class _AutoOrientationDemoState extends State<AutoOrientationDemo> {
                 ),
               ],
             ),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey.shade50,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                "Current Orientation: ${AutoOrientation.isLandscape(context) ? "LANDSCAPE 📱↔️" : "PORTRAIT 📱↕️"}",
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ScopedLandscapeScreen extends StatelessWidget {
+  const ScopedLandscapeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoOrientationScope(
+      targetMode: AutoOrientationMode.landscapeRight,
+      onDisposeMode: AutoOrientationMode.portraitUp,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Scoped Landscape Screen"),
+          backgroundColor: Colors.deepPurple,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.screen_rotation, size: 64, color: Colors.deepPurple),
+              const SizedBox(height: 16),
+              const Text(
+                "This screen is automatically locked to Landscape Right!",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "When you press back, it will revert back to Portrait Up.",
+                style: TextStyle(color: Colors.grey),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text("Go Back"),
+              ),
+            ],
+          ),
         ),
       ),
     );
