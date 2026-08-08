@@ -1,3 +1,9 @@
+## 2.4.1
+
+- Added multi-platform declarations for `Web`, `Windows`, `macOS`, and `Linux` (20/20 platform score on pub.dev).
+- Placed Swift Package Manager (SPM) manifest in `ios/auto_orientation_v2/Package.swift` per Flutter SPM specification.
+- Migrated Android build config to Flutter built-in Kotlin support.
+
 ## 2.4.0
 
 - Added Swift Package Manager (SPM) support for iOS (`Package.swift`).

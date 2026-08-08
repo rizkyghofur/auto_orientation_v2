@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'auto_orientation_v2'
-  s.version          = '2.4.0'
+  s.version          = '2.4.1'
   s.summary          = 'Set and control device orientation programmatically for Flutter apps on iOS and Android.'
   s.description      = <<-DESC
 Set and control device orientation programmatically for Flutter apps on iOS and Android.

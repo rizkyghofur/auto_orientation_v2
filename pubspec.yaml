@@ -1,6 +1,6 @@
 name: auto_orientation_v2
 description: Set and control device orientation programmatically for Flutter apps on iOS and Android.
-version: 2.4.0
+version: 2.4.1
 homepage: https://github.com/rizkyghofur/auto_orientation_v2
 repository: https://github.com/rizkyghofur/auto_orientation_v2
 issue_tracker: https://github.com/rizkyghofur/auto_orientation_v2/issues
@@ -25,3 +25,15 @@ flutter:
         pluginClass: AutoOrientationPlugin
       ios:
         pluginClass: AutoOrientationPlugin
+      web:
+        pluginClass: AutoOrientationPlugin
+        fileName: auto_orientation_v2.dart
+      windows:
+        pluginClass: AutoOrientationPlugin
+        fileName: auto_orientation_v2.dart
+      macos:
+        pluginClass: AutoOrientationPlugin
+        fileName: auto_orientation_v2.dart
+      linux:
+        pluginClass: AutoOrientationPlugin
+        fileName: auto_orientation_v2.dart
