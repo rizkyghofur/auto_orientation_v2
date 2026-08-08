@@ -1,3 +1,13 @@
+## 2.4.0
+
+- Added Swift Package Manager (SPM) support for iOS (`Package.swift`).
+- Migrated Android native code from Java to Kotlin (`AutoOrientationPlugin.kt`).
+- Renamed Android package and namespace to `com.rizkyghofur.autoorientation`.
+- Added `AutoOrientationScope` widget for declarative orientation locking and automatic reversion on widget disposal.
+- Added orientation helper methods: `AutoOrientation.isLandscape(context)`, `AutoOrientation.isPortrait(context)`, and `AutoOrientation.currentOrientation(context)`.
+- Added Web and Desktop compatibility guards with `SystemChrome` fallback.
+- Added unit and widget tests for `AutoOrientationScope` and orientation modes.
+
 ## 2.3.8
 
 - Added `AutoOrientationMode` enum for easier orientation management.
