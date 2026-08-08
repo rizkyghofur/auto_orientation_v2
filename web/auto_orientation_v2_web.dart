@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'dart:html' as html;
+import 'dart:js_interop';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:web/web.dart' as web;
 
-/// Web implementation of the AutoOrientationPlugin.
+/// Web implementation of the AutoOrientationPlugin using package:web.
 class AutoOrientationWeb {
   static void registerWith(Registrar registrar) {
     final MethodChannel channel = MethodChannel(
@@ -17,23 +18,22 @@ class AutoOrientationWeb {
 
   Future<dynamic> handleMethodCall(MethodCall call) async {
     try {
-      final html.ScreenOrientation? orientation = html.window.screen?.orientation;
-      if (orientation == null) return null;
+      final orientation = web.window.screen.orientation;
 
       switch (call.method) {
         case 'setLandscapeRight':
         case 'setLandscapeAuto':
-          await orientation.lock('landscape-primary');
+          await orientation.lock('landscape-primary').toDart;
           break;
         case 'setLandscapeLeft':
-          await orientation.lock('landscape-secondary');
+          await orientation.lock('landscape-secondary').toDart;
           break;
         case 'setPortraitUp':
         case 'setPortraitAuto':
-          await orientation.lock('portrait-primary');
+          await orientation.lock('portrait-primary').toDart;
           break;
         case 'setPortraitDown':
-          await orientation.lock('portrait-secondary');
+          await orientation.lock('portrait-secondary').toDart;
           break;
         case 'setAuto':
         case 'setScreenOrientationUser':
@@ -42,7 +42,8 @@ class AutoOrientationWeb {
         default:
           throw PlatformException(
             code: 'Unimplemented',
-            details: 'auto_orientation_v2 for Web does not implement ${call.method}',
+            details:
+                'auto_orientation_v2 for Web does not implement ${call.method}',
           );
       }
     } catch (_) {

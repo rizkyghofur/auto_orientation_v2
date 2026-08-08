@@ -1,3 +1,7 @@
+## 2.4.4
+
+- Added `flutter_web_plugins` dependency in `pubspec.yaml` to fix web plugin compilation errors.
+
 ## 2.4.3
 
 - Added dedicated Web implementation using browser `ScreenOrientation` API (`web/auto_orientation_v2_web.dart`).
