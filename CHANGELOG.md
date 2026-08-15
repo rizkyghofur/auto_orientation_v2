@@ -1,3 +1,9 @@
+## 2.4.5
+
+- Fixed Swift Package Manager (SPM) integration on iOS by placing source files under `ios/auto_orientation_v2/Sources/auto_orientation_v2/` and adding `FlutterFramework` dependency in issue [#3](https://github.com/rizkyghofur/auto_orientation_v2/issues/3).
+- Updated `ios/auto_orientation_v2.podspec` source path for CocoaPods compatibility.
+- Cleaned up redundant manifests.
+
 ## 2.4.4
 
 - Added `flutter_web_plugins` dependency in `pubspec.yaml` to fix web plugin compilation errors.

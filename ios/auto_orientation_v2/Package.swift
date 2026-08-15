@@ -6,19 +6,26 @@ import PackageDescription
 let package = Package(
     name: "auto_orientation_v2",
     platforms: [
-        .iOS(.v12)
+        .iOS("13.0")
     ],
     products: [
         .library(
-            name: "auto_orientation-v2",
+            name: "auto-orientation-v2",
             targets: ["auto_orientation_v2"]
         )
     ],
-    dependencies: [],
+    dependencies: [
+        .package(name: "FlutterFramework", path: "../FlutterFramework")
+    ],
     targets: [
         .target(
             name: "auto_orientation_v2",
-            dependencies: [],
+            dependencies: [
+                .product(
+                    name: "FlutterFramework",
+                    package: "FlutterFramework"
+                )
+            ],
             resources: []
         )
     ]

@@ -97,7 +97,8 @@ class _AutoOrientationDemoState extends State<AutoOrientationDemo> {
               ],
             ),
             const SizedBox(height: 24),
-            const SectionHeader(title: "Declarative API (AutoOrientationScope)"),
+            const SectionHeader(
+                title: "Declarative API (AutoOrientationScope)"),
             OrientationButton(
               label: "Open Landscape Screen (Auto Lock & Revert)",
               color: Colors.deepPurple,
@@ -164,7 +165,8 @@ class ScopedLandscapeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.screen_rotation, size: 64, color: Colors.deepPurple),
+              const Icon(Icons.screen_rotation,
+                  size: 64, color: Colors.deepPurple),
               const SizedBox(height: 16),
               const Text(
                 "This screen is automatically locked to Landscape Right!",
