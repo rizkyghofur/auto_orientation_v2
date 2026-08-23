@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Flutter](https://img.shields.io/badge/Flutter-%3E%3D3.0.0-blue.svg)](https://flutter.dev)
 
-A Flutter plugin to **programmatically control device orientation** on **iOS** and **Android**.  
+A Flutter plugin to **programmatically control device orientation** on **iOS**, **Android**, and **Web**.  
 This package is an improved version of the original:  
 ➡️ <https://pub.dev/packages/auto_orientation>
 

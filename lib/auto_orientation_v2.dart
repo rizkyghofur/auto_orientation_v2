@@ -1,11 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-/// Web and Desktop plugin registrar compatibility interface.
-class AutoOrientationPlugin {
-  static void registerWith(dynamic registrar) {}
-}
-
 /// Available modes for device orientation.
 enum AutoOrientationMode {
   /// Force landscape right orientation.
@@ -33,7 +28,7 @@ enum AutoOrientationMode {
   user,
 }
 
-/// A Flutter plugin to programmatically control device orientation on iOS and Android.
+/// A Flutter plugin to programmatically control device orientation on iOS, Android, and Web.
 class AutoOrientation {
   static const MethodChannel _channel = MethodChannel('auto_orientation');
 
