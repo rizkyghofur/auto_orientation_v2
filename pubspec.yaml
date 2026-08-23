@@ -31,12 +31,3 @@ flutter:
       web:
         pluginClass: AutoOrientationWeb
         fileName: web/auto_orientation_v2_web.dart
-      windows:
-        pluginClass: AutoOrientationPlugin
-        fileName: auto_orientation_v2.dart
-      macos:
-        pluginClass: AutoOrientationPlugin
-        fileName: auto_orientation_v2.dart
-      linux:
-        pluginClass: AutoOrientationPlugin
-        fileName: auto_orientation_v2.dart
