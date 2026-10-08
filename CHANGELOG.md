@@ -1,3 +1,8 @@
+## 2.4.7
+
+- Fixed Android JVM target compatibility by setting Java and Kotlin compiler targets to Java 17 in pull request [#5](https://github.com/rizkyghofur/auto_orientation_v2/pull/5).
+- Updated Android Gradle plugin dependency to 9.4.1.
+
 ## 2.4.6
 
 - Removed unsupported desktop platform declarations (`windows`, `macos`, `linux`) in pull request [#4](https://github.com/rizkyghofur/auto_orientation_v2/pull/4) and purged leftover desktop build manifests (`windows/`, `linux/`).
